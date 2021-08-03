@@ -40,7 +40,7 @@ YES          NO           NO
 See also
 ^^^^^^^^
 
-See also **BasicIlluminationApply**.
+See also **BaSiCIlluminationApply**.
 
 Technical notes
 ^^^^^^^^^^^^^^^
