@@ -22,7 +22,7 @@ YES          NO           NO
 See also
 ^^^^^^^^
 
-See also **BasicIlluminationCalculate**.
+See also **BaSiCIlluminationCalculate**.
 
 Technical notes
 ^^^^^^^^^^^^^^^

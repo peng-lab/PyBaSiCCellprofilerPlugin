@@ -40,7 +40,7 @@ YES          NO           NO
 See also
 ^^^^^^^^
 
-See also **BaSiCIlluminationApply**.
+See also **BasicIlluminationApply**.
 
 Technical notes
 ^^^^^^^^^^^^^^^
@@ -120,7 +120,7 @@ During which cycle the background is calculated?
             value=True,
             doc="""\
 Whether you would like to estimate darkfield, keep 'No' if the input images are brightfield
-images or bright fluoresence images, set 'Yes' only if only if the input images are fluorescence 
+images or bright fluorescence images, set 'Yes' only if only if the input images are fluorescence 
 images are dark and have a strong darkfield contribution. (default = 'No')",
 """
         )
@@ -168,7 +168,7 @@ Set to 'Yes' if input images has temporal drift (e.g. time lapse movie)  (defaul
             value=0,
             doc="""\
 If you set the flat-field regularization parameter to 0 or a negative value, 
-an internally estimated value is used. We recommend to use internally etimated 
+an internally estimated value is used. We recommend to use internally estimated 
 value. High values (eg. 9.5) increase the spatial regularization strength, 
 yielding a more smooth flat-field. A default value estimated from input images.
 """
@@ -179,7 +179,7 @@ yielding a more smooth flat-field. A default value estimated from input images.
             value=0,
             doc="""\
 If you set the dark-field regularization parameter to 0 or a negative value, 
-an internally estimated value is used. We recommend to use internally etimated 
+an internally estimated value is used. We recommend to use internally estimated 
 value. High values (eg. 9.5) increase the spatial regularization strength, 
 yielding a more smooth dark-field. A default value estimated from input images.
 """
@@ -210,7 +210,7 @@ An internal parameter, should not be reset by user without expert knowledge.
             text="Maximum reweighting iterations",
             value=10,
             doc="""\
-An internal parameter, should not be reset by user without expert knowledge.
+An internal parameter should not be reset by the user without expert knowledge.
 """            
         )
         
@@ -218,23 +218,23 @@ An internal parameter, should not be reset by user without expert knowledge.
             text="Reweighting parameter",
             value=0.1,
             doc="""\
-An internal parameter, should not be reset by user without expert knowledge.
+An internal parameter should not be reset by the user without expert knowledge.
 """            
         )
         
         self.varying_coeff = Binary(
-            text="Varing coefficients",
+            text="Varying coefficients",
             value=True,
             doc="""\
-An internal parameter, should not be reset by user without expert knowledge.
+An internal parameter should not be reset by the user without expert knowledge.
 """            
         )
             
         self.reweight_tolerance = Float(
-            text="Reweighting olerance",
+            text="Reweighting tolerance",
             value=1.0e-3,
             doc="""\
-An internal parameter, should not be reset by user without expert knowledge.
+An internal parameter should not be reset by the user without expert knowledge.
 """ 
         )           
 
@@ -811,7 +811,7 @@ def baseline_drift(
         # XE_norm = E1_hat / np.mean(A1_hat)
         XE_norm = E1_hat
         mean_vec = np.mean(A1_hat, axis=1)
-        XE_norm = np.transpose(np.tile(mean_vec, (16384, 1))) / XE_norm
+        XE_norm = np.transpose(np.tile(mean_vec, (nrows * ncols, 1))) / (XE_norm + 1e-6)
         _weights = 1./(abs(XE_norm)+eplson)
 
         _weights = np.divide( np.multiply(_weights, _weights.shape[0] * _weights.shape[1]), np.sum(_weights))
