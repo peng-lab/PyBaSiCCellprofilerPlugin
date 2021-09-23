@@ -39,7 +39,10 @@ After dropping the files, the imported files are visually listed like the follow
 
 ## Creating a pipeline for PyBasicCellprofilerPlugin
 
-After importing the input images, we first load the BaSiCIlluminationCalculate module by 1) double click on it or 2) selecting the module and clicking on **+ Add to Pipeline** button.
+After importing the input images, we first load the BaSiCIlluminationCalculate module by 1) double click on it or 2) selecting the module and clicking on **+ Add to Pipeline** button. Then we configure it like below. We set the input images to **DNA** (default image group name), and ask for calculating the drakfield and baseline drift. You can also change the name of flatfield, darkfield and baseline images from their default values.
+
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BaSiCIlluminationCalculate_config.png)
+
 
 The below figures show examples of settings and outputs of the plugins in CellProfiler application. The input images are accessible at 'WSI_Brain_Uncorrected_tiles' folder in the repository.
 
