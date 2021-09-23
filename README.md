@@ -15,6 +15,11 @@ After analysing the image, Cellprofiler save the results as images and/or tables
 
 ![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Cellprofiler_setting_output_directory.png)
 
+## Import input images
+The simplest way to import images is to drag and drop a set of selected images in the "drag and drop files" of Cellprofiler.
+
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Cellprofiler_drag_and_drop_before.png)
+
 
 
 The below figures show examples of settings and outputs of the plugins in CellProfiler application. The input images are accessible at 'WSI_Brain_Uncorrected_tiles' folder in the repository.
