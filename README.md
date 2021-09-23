@@ -8,6 +8,12 @@ In addition to the standard modules, the Cellprofiler loads a set of plugins. Th
 
 ![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Cellprofiler_setting_plugins_directory.png)
 
+## How to set the output folder?
+
+After analysing the image, Cellprofiler save the results as images and/or tables according to your configuration. Similar to plugins folder you can select output fodler in preferences. Set the <em>Preferences > Cellprofiler plugins directory</em> like below figure:
+
+
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Cellprofiler_setting_output_directory.png)
 
 
 
