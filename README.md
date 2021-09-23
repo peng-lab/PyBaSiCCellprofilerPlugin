@@ -4,7 +4,9 @@ BaSiCIlluminationCalculate and BaSiCIlluminationApply are two [CellProfiler](htt
 
 # How to use the plugins:
 In addition to the standard modules, the Cellprofiler loads a set of plugins. The Cellprofiler recongnizes the plugins in a given folder and load them for the user.
-You can select the folder containing the plugins in <em>Preferences > Cellprofiler plugins directory</em>. 
+You can select the folder containing the plugins in <em>Preferences > Cellprofiler plugins directory</em> like below figure and then click <em>save</em> botton.
+
+
 
 The below figures show examples of settings and outputs of the plugins in CellProfiler application. The input images are accessible at 'WSI_Brain_Uncorrected_tiles' folder in the repository.
 
