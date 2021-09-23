@@ -14,6 +14,8 @@ If you successfully load a plugin, the plugin should be listed in the available 
 
 Because the BaSiCIlluminationCalculate and BaSiCIlluminationApply plugins are image processing plugins, they are listed in the Image Processing category.
 
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Cellprofiler_modules.png)
+
 
 ## How to set the output folder?
 
