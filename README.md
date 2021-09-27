@@ -68,10 +68,12 @@ The **SaveImage**, a module in <em>File Processing</em> category, saves images i
 
 Similar to saving the flatfield image, another **SaveImage** module is added to the pipeline in order to save the darkfield image. The only differences are that we select <em>BasicDarkfield</em> for saving and name the file e.g. <em>Darkfield</em>.
 
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Darkfield_saveimage_config.png)
 
+### Adding SaveImage module to save baseline drift images
 
+As explained in the beginning, flatfield, darkfield and baseline drift are calculated during the first cycle. Baseline drift is a specific value for each image that should be subtracted as a part of background correction. In each cycle, a constant image with the pixel value of baseline drift is created for each image by <em>BaSiCIlluminationCalculate</em> andit is used by <em>BaSiCIlluminationApply</em> to subtract the baseline drift from an input image. You may also need to save the baseline drift images in each cycle. Since they are created one-by-one, we need to save them in every cycle. We add a suffix to the name of input images in order to create a series of file names for baseline drift images.
 
-Flatfield, darkfield and baseline drift are calculated during the first cycle. The flatfield and darkfield images are also created during the first cycle and used for applying the correction for all cycles.
 
 
 
