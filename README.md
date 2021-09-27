@@ -92,12 +92,12 @@ After creating the pipeline you can click on **Start Test Mode** for module-by-m
 
 ### BaSiCIlluminationCalculate output:
 
-The figure below shows an example **BaSiCIlluminationCalculate** output. The top right and top left panel illustrate the flatfield and darkfield images. If the user asked measuring the baseline drfit in setting of the **BaSiCIlluminationCalculate** plugin, then the values of baseline drift are shown against the image number.
+The figure below shows an example **BaSiCIlluminationCalculate** output. The top right and top left panel illustrate the flatfield and darkfield images. If the user asked to measure the baseline drift in the setting of the **BaSiCIlluminationCalculate** plugin, then the values of baseline drift are shown against the image number.
 
 ![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BaSiCIlluminationCalculate_output.png)
 
 ### BaSiCIlluminationApply output:
 
-The figure below shows an example **BaSiCIlluminationApply** output. The top right and top left images are the original input image and the corrected image respectively. In the bottom panels flatfield and darkfield images are illustrated (the same as top panel in **BaSiCIlluminationCalculate**).
+The figure below shows an example **BaSiCIlluminationApply** output. The top right and top left images are the original input image and the corrected image respectively. In the bottom panels flatfield and darkfield images are illustrated (the same as the top panels in **BaSiCIlluminationCalculate**).
 
-![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BaSiCIlluminationapply_output.png)
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BaSiCIlluminationApply_output.png)
