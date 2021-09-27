@@ -60,9 +60,19 @@ Now we add the **BaSiCIlluminationApply** to the pipeline and confiure it like b
 
 ### Adding SaveImage module to save flatfield image
 
-The **SaveImage**, in <em>File Processing</em> category of the module, save images in different formats. We add it to the pipeline and since flatfield is single image for whole input images we save it once (e.g. only in the first cycle) and as 32-bit floating point image. Flatfield, darkfield and baseline drift are calculated during the first cycle. The flatfield and darkfield images are also created during the first cycle and used for applying the correction for all cycles. You can name the file with an arbitrary name and it is set to "Flatfield" in the following example.
+The **SaveImage**, a module in <em>File Processing</em> category, saves images in different formats. We add it to the pipeline and because flatfield is a single image for a group of input images we save it once (e.g. only in the first cycle). The <em>bit-depth</em> is set to 32-bit floating point image otherwise the pixel values are normed to integer. You can name the file with an arbitrary name and it is set to "Flatfield" in the following example.
 
 ![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Flatfield_saveimage_config.png)
+
+### Adding SaveImage module to save darkfield image
+
+Similar to saving the flatfield image, another **SaveImage** module is added to the pipeline in order to save the darkfield image. The only differences are that we select <em>BasicDarkfield</em> for saving and name the file e.g. <em>Darkfield</em>.
+
+
+
+
+Flatfield, darkfield and baseline drift are calculated during the first cycle. The flatfield and darkfield images are also created during the first cycle and used for applying the correction for all cycles.
+
 
 
 The below figures show examples of settings and outputs of the plugins in CellProfiler application. The input images are accessible at 'WSI_Brain_Uncorrected_tiles' folder in the repository.
