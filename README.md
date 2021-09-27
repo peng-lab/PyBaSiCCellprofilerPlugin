@@ -79,9 +79,9 @@ As explained in the beginning, flatfield, darkfield and baseline drift are calcu
 
 ### Adding SaveImage module to save corrected images
 
-Similar to baseline drift images, corrected images are created per each cycle so we save them in every cycles. We also add a suffix to the name of input images to create file name for ouput images.
+Similar to baseline drift images, corrected images are created per each cycle so we save them in every cycle. We also add a suffix to the name of input images to create filename for output images.
 
-
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/Corrected_saveimage_config.png)
 
 The below figures show examples of settings and outputs of the plugins in CellProfiler application. The input images are accessible at 'WSI_Brain_Uncorrected_tiles' folder in the repository.
 
