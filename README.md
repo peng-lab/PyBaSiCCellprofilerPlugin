@@ -85,19 +85,19 @@ Similar to baseline drift images, corrected images are created per each cycle so
 
 ### 7) Adding ExportToSpreadsheet module to save baseline drifts
 
-In addition to the module 5, you may also want to save the value of the baseline drift as an spreadsheet file.
+In addition to module 5, you may also want to save the value of the baseline drift as a spreadsheet file. The module exports measurements including the metadata of the images in a **","** separated file. In our pipeline, the output of **ExportToSpreadsheet** contains baseline drift of the images as a column.
 
+After creating the pipeline you can click on **Start Test Mode** for module-by-module run of the first cycle in the pipeline in order to see if all the modules work properly or not. Consider that **ExportToSpreadsheet** does not work in testing mode. You can run the pipeline on the input images by clicking on **Analyze Images**. Running a pipeline may open new windows in order to show the figures for the modules that have **display** functions. In the following, displayed figures of the **BaSiCIlluminationCalculate** and **BaSiCIlluminationCalculate** plugins are described.
 
-The below figures show examples of settings and outputs of the plugins in CellProfiler application. The input images are accessible at 'WSI_Brain_Uncorrected_tiles' folder in the repository.
-
-### BaSiCIlluminationCalculate settings:
-![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BasicIlluminationCalculate_setup.png)
 
 ### BaSiCIlluminationCalculate output:
-![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BasicIlluminationCalculate_output.png)
 
-### BaSiCIlluminationApply settings:
-![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BasicIlluminationApply_setup.png)
+The figure below shows an example **BaSiCIlluminationCalculate** output. The top right and top left panel illustrate the flatfield and darkfield images. If the user asked measuring the baseline drfit in setting of the **BaSiCIlluminationCalculate** plugin, then the values of baseline drift are shown against the image number.
+
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BaSiCIlluminationCalculate_output.png)
 
 ### BaSiCIlluminationApply output:
-![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BasicIlluminationApply_output.png)
+
+The figure below shows an example **BaSiCIlluminationApply** output. The top right and top left images are the original input image and the corrected image respectively. In the bottom panels flatfield and darkfield images are illustrated (the same as top panel in **BaSiCIlluminationCalculate**).
+
+![logs_graph](https://github.com/peng-lab/PyBasicCellprofilerPlugin/blob/main/figures/BaSiCIlluminationapply_output.png)
