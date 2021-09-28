@@ -1,6 +1,6 @@
 """
 BaSiCIlluminationApply
-========================
+======================
 
 **BaSiCIlluminationApply** applies an illumination correction
 as usually created by **BaSiCIlluminationCalculate**, to an image in
@@ -35,7 +35,7 @@ from cellprofiler_core.module import ImageProcessing
 from cellprofiler_core.image import Image
 from cellprofiler_core.setting.subscriber import ImageSubscriber
 from cellprofiler_core.setting.text import ImageName
-
+import numpy as np
 
 class BaSiCIlluminationApply(ImageProcessing):
     category = "Image Processing"
@@ -73,12 +73,22 @@ carry out the correction.
 """,
         )
 
+        self.baseline_image_name = ImageSubscriber(
+            "Select the baseline drift image",
+            "None",
+            doc="""\
+Select the basline drift image that will be used to
+carry out the correction.
+""",
+        )
+
     def settings(self):
         return [
             self.image_name,
             self.corrected_image_name,
             self.flatfield_image_name,      
             self.darkfield_image_name,
+            self.baseline_image_name,
         ]
 
     def visible_settings(self):
@@ -89,6 +99,7 @@ carry out the correction.
             self.corrected_image_name,
             self.flatfield_image_name,      
             self.darkfield_image_name,            
+            self.baseline_image_name,
         ]
         return visible_settings
 
@@ -110,6 +121,9 @@ carry out the correction.
         flatfield = workspace.image_set.get_image(self.flatfield_image_name.value)
         if self.darkfield_image_name.value is not None:
             darkfield = workspace.image_set.get_image(self.darkfield_image_name.value)
+        if self.baseline_image_name is not None:
+            baseline = workspace.image_set.get_image(self.baseline_image_name.value)
+
 
         # Throw an error if images are incompatible
         if orig_image.pixel_data.ndim != 2:
@@ -139,13 +153,31 @@ carry out the correction.
                     darkfield.pixel_data.shape,
                 )
             )
+        if self.baseline_image_name.value is not None and baseline.pixel_data.ndim != 2:
+            raise ValueError(
+                "This module requires that the baseline image has dimension of 2.\n"
+                "The %s baseline image has the shape of %s.\n"
+                % (
+                    self.baseline.value,
+                    baseline.pixel_data.shape,
+                )
+            )
+
         #
         # Applying the correction:
         #
-        if self.darkfield_image_name.value is None:
-            output_pixels = orig_image.pixel_data / flatfield.pixel_data
+        if self.darkfield_image_name.value is not None:
+            darkfield_pixel_data = darkfield.pixel_data
         else:
-            output_pixels = (orig_image.pixel_data  - darkfield.pixel_data) / flatfield.pixel_data
+            darkfield_pixel_data = np.zeros_like(flatfield.pixel_data)            
+
+        if self.baseline_image_name.value is not None:
+            baseline_pixel_data = baseline.pixel_data
+        else:
+            baseline_pixel_data = np.zeros_like(flatfield.pixel_data) 
+
+        output_pixels = (orig_image.pixel_data  - darkfield_pixel_data) / flatfield.pixel_data
+        output_pixels -= baseline_pixel_data
         
         
         #

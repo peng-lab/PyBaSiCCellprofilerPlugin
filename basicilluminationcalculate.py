@@ -16,7 +16,7 @@ from scipy.fftpack import dct, idct
 
 __doc__ = """\
 BaSiCIlluminationCalculate
-=============
+==========================
 
 **BaSiCIlluminationCalculate** caluculates the background and shading correction of optical microscopy images.
 The background and shading illumination is modeled as:
@@ -24,6 +24,7 @@ The background and shading illumination is modeled as:
 I_means(x) = I_true(x) * flatfield(x) + darkfield(x).
 
 **BaSiCIlluminationCalculate** caluculates the darkfield and flatfield images for a set of input images.
+It also computes baseline drift for the input images.
 
 Reference: Tingying Peng, Kurt Thorn, Timm Schroeder, Lichao Wang, Fabian J Theis, Carsten Marr, Nassir Navab, Nature Communication 8:14836 (2017). doi: 10.1038/ncomms14836.
 
@@ -135,6 +136,12 @@ images are dark and have a strong darkfield contribution. (default = 'No')",
             "Name the output dark-field image",
             "BasicDarkfield",
             doc="""Enter a name for the resultant darkfield image.""",
+        )
+
+        self.baseline_image_name = ImageName(
+            "Name the output baseline drift image",
+            "BasicBaselineDrift",
+            doc="""Enter a name for the resultant baseline drift image.""",
         )
 
         self.save_flatfield_image = Binary(
@@ -261,6 +268,7 @@ An internal parameter should not be reset by the user without expert knowledge.
             self.if_baseline_drift,
             self.darkfield_image_name,
             self.flatfield_image_name,
+            self.baseline_image_name,
             self.save_flatfield_image,
             self.save_darkfield_image,
             self.lambda_flatfield,
@@ -284,10 +292,11 @@ An internal parameter should not be reset by the user without expert knowledge.
         # Configure the visibility of additional settings below.
         visible_settings = [
             self.image_name,
+            self.flatfield_image_name,         
             self.if_darkfield,
             self.darkfield_image_name,
-            self.flatfield_image_name,         
             self.if_baseline_drift,
+            self.baseline_image_name,
             self.lambda_flatfield,
             self.lambda_darkfield,
         ]
@@ -383,13 +392,20 @@ An internal parameter should not be reset by the user without expert knowledge.
         baseline_drift = output_image_provider.provide_baseline_drift()
         #workspace.image_set.add("baselineDriftImage", baseline_drift)
 
+        # The baseline image is created for each input image.
+        # A baseline image is an image with the same shape of flatfield and constant value in all pixels for a single input image.
         if self.if_baseline_drift.value is True:
             workspace.measurements.add_image_measurement("BaseLineDrift", baseline_drift[self.image_counter])
+            baseline_drift_pixel_data = np.ones_like(flatfield.pixel_data) * baseline_drift[self.image_counter]
             self.image_counter += 1
+        else:
+            baseline_drift_pixel_data = np.zeros_like(flatfield.pixel_data)
 
         workspace.image_set.add(self.flatfield_image_name.value, flatfield)
         workspace.image_set.add(self.darkfield_image_name.value, darkfield)
-
+        workspace.image_set.add(self.baseline_image_name.value, Image(baseline_drift_pixel_data))
+        
+        
         output_image_provider.serialize(d)
 
 
